@@ -13,6 +13,7 @@ const Colors = {
   white: "#ffffff",
   gray: "#BDBDBD",
   orange: "#ff6c00",
+  disable: "#F6F6F6",
 };
 
 export default Colors;

@@ -13,22 +13,13 @@ import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
-export const RegistrationScreen = () => {
+export const LoginScreen = () => {
   return (
     <ImageBackground source={ImageBG} style={styles.image} resizeMode="cover">
       <View style={styles.container}>
-        <View style={styles.avatarBox}>
-          <TouchableOpacity
-            style={styles.addImgButton}
-            onPress={() => Alert.alert("Plus Pressed")}
-          >
-            <AntDesign name="pluscircleo" size={24} color={COLORS.orange} />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.blockWrapper}>
-          <Text style={styles.title}>Реєстрація</Text>
-          <TextInput style={styles.input} placeholder="Логін" />
+          <Text style={styles.title}>Увійти</Text>
+
           <TextInput
             style={styles.input}
             placeholder="Адреса електронної пошти"
@@ -45,9 +36,9 @@ export const RegistrationScreen = () => {
             style={styles.btn}
             onPress={() => Alert.alert("Button Pressed")}
           >
-            <Text style={styles.titleBtn}>Зареєстуватися</Text>
+            <Text style={styles.titleBtn}>Увійти</Text>
           </TouchableOpacity>
-          <Text style={styles.link}>Вже є акаунт? Увійти</Text>
+          <Text style={styles.link}>Немає акаунту? Зареєструватися</Text>
         </View>
       </View>
     </ImageBackground>
@@ -63,13 +54,13 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: COLORS.primaryBg,
 
-    height: 550,
+    height: 489,
     marginTop: 300,
     paddingHorizontal: 16,
     alignItems: "center",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    paddingTop: 92,
+    paddingTop: 32,
   },
   avatarBox: {
     position: "absolute",
