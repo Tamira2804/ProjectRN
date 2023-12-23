@@ -1,11 +1,15 @@
+import { useState } from "react";
 import {
+  Platform,
   StyleSheet,
   Text,
   View,
   TextInput,
-  Image,
   ImageBackground,
   Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
   TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -14,6 +18,14 @@ import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
 export const RegistrationScreen = () => {
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // const onSignIn = () => {
+  //   Alert.alert("Credentials", `${login}`, `${email}`, `${password}`);
+  // };
+
   return (
     <ImageBackground source={ImageBG} style={styles.image} resizeMode="cover">
       <View style={styles.container}>
@@ -26,29 +38,51 @@ export const RegistrationScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.blockWrapper}>
-          <Text style={styles.title}>Реєстрація</Text>
-          <TextInput style={styles.input} placeholder="Логін" />
-          <TextInput
-            style={styles.input}
-            placeholder="Адреса електронної пошти"
-          />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View>
-            <TextInput style={styles.input} placeholder="Пароль" />
+            <Text style={styles.title}>Реєстрація</Text>
 
-            <TouchableOpacity style={styles.showPassword}>
-              <Text>Показати</Text>
+            <KeyboardAvoidingView
+              style={styles.blockWrapper}
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
+              <TextInput
+                style={styles.input}
+                placeholder="Логін"
+                onChangeText={setLogin}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Адреса електронної пошти"
+                onChangeText={setEmail}
+              />
+              <View>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Пароль"
+                  onChangeText={setPassword}
+                />
+
+                <TouchableOpacity style={styles.showPassword}>
+                  <Text>Показати</Text>
+                </TouchableOpacity>
+              </View>
+            </KeyboardAvoidingView>
+
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={console.log(
+                "Credentials",
+                `${login}`,
+                `${email}`,
+                `${password}`
+              )}
+            >
+              <Text style={styles.titleBtn}>Зареєстуватися</Text>
             </TouchableOpacity>
+            <Text style={styles.link}>Вже є акаунт? Увійти</Text>
           </View>
-
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => Alert.alert("Button Pressed")}
-          >
-            <Text style={styles.titleBtn}>Зареєстуватися</Text>
-          </TouchableOpacity>
-          <Text style={styles.link}>Вже є акаунт? Увійти</Text>
-        </View>
+        </TouchableWithoutFeedback>
       </View>
     </ImageBackground>
   );
@@ -99,6 +133,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Medium",
     fontSize: 30,
     marginBottom: 16,
+    alignSelf: "center",
   },
 
   input: {
@@ -110,6 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
   },
+
   showPassword: {
     position: "absolute",
     bottom: 16,
@@ -134,5 +170,6 @@ const styles = StyleSheet.create({
     color: COLORS.linkedText,
     fontFamily: "Roboto-Regular",
     fontSize: 16,
+    alignSelf: "center",
   },
 });
