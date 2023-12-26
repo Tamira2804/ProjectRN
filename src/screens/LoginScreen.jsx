@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Platform,
+  Alert,
   StyleSheet,
   Text,
   View,
@@ -18,6 +19,10 @@ import ImageBG from "../../assets/images/PhotoBG.png";
 export const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onLogin = () => {
+    console.log("Credentials", `${email}, ${password}`);
+  };
 
   return (
     <ImageBackground source={ImageBG} style={styles.image} resizeMode="cover">
@@ -48,10 +53,7 @@ export const LoginScreen = () => {
               </View>
             </KeyboardAvoidingView>
 
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={console.log("Credentials", `${email}`, `${password}`)}
-            >
+            <TouchableOpacity style={styles.btn} onPress={onLogin}>
               <Text style={styles.titleBtn}>Увійти</Text>
             </TouchableOpacity>
             <Text style={styles.link}>Немає акаунту? Зареєструватися</Text>

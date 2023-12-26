@@ -22,9 +22,9 @@ export const RegistrationScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const onSignIn = () => {
-  //   Alert.alert("Credentials", `${login}`, `${email}`, `${password}`);
-  // };
+  const onSignIn = () => {
+    console.log("Credentials", `${login}`, `${email}`, `${password}`);
+  };
 
   return (
     <ImageBackground source={ImageBG} style={styles.image} resizeMode="cover">
@@ -69,15 +69,7 @@ export const RegistrationScreen = () => {
               </View>
             </KeyboardAvoidingView>
 
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={console.log(
-                "Credentials",
-                `${login}`,
-                `${email}`,
-                `${password}`
-              )}
-            >
+            <TouchableOpacity style={styles.btn} onPress={onSignIn}>
               <Text style={styles.titleBtn}>Зареєстуватися</Text>
             </TouchableOpacity>
             <Text style={styles.link}>Вже є акаунт? Увійти</Text>
