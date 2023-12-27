@@ -16,7 +16,7 @@ import {
 import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
-export const LoginScreen = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

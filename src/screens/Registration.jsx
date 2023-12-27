@@ -17,7 +17,7 @@ import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
-export const RegistrationScreen = () => {
+export const Registration = () => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
