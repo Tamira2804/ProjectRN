@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   Platform,
   StyleSheet,
@@ -17,14 +18,21 @@ import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
-export const Registration = () => {
-  const [login, setLogin] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const RegistrationScreen = () => {
+  const [inputs, setInputs] = useState({ login: "", email: "", password: "" });
 
-  const onSignIn = () => {
-    console.log("Credentials", `${login}`, `${email}`, `${password}`);
+  const handleOnChange = (text, inputName) => {
+    setInputs((prevState) => ({ ...prevState, [inputName]: text }));
   };
+
+  const onRegister = () => {
+    Keyboard.dismiss();
+    setInputs({ login: "", email: "", password: "" });
+    navigation.navigate("Home");
+    console.log("Credentials", inputs);
+  };
+
+  const navigation = useNavigation();
 
   return (
     <ImageBackground source={ImageBG} style={styles.image} resizeMode="cover">
@@ -49,18 +57,27 @@ export const Registration = () => {
               <TextInput
                 style={styles.input}
                 placeholder="Логін"
-                onChangeText={setLogin}
+                value={inputs.login}
+                onChangeText={(text) => {
+                  handleOnChange(text, "login");
+                }}
               />
               <TextInput
                 style={styles.input}
                 placeholder="Адреса електронної пошти"
-                onChangeText={setEmail}
+                value={inputs.email}
+                onChangeText={(text) => {
+                  handleOnChange(text, "email");
+                }}
               />
               <View>
                 <TextInput
                   style={styles.input}
                   placeholder="Пароль"
-                  onChangeText={setPassword}
+                  value={inputs.password}
+                  onChangeText={(text) => {
+                    handleOnChange(text, "password");
+                  }}
                 />
 
                 <TouchableOpacity style={styles.showPassword}>
@@ -69,10 +86,16 @@ export const Registration = () => {
               </View>
             </KeyboardAvoidingView>
 
-            <TouchableOpacity style={styles.btn} onPress={onSignIn}>
+            <TouchableOpacity style={styles.btn} onPress={onRegister}>
               <Text style={styles.titleBtn}>Зареєстуватися</Text>
             </TouchableOpacity>
-            <Text style={styles.link}>Вже є акаунт? Увійти</Text>
+
+            <View>
+              <Text style={styles.link}>Вже є акаунт?</Text>
+              <TouchableOpacity onPress={navigation.navigate("Login")}>
+                <Text style={styles.link}> Увійти</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -165,3 +188,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
+
+export default RegistrationScreen;

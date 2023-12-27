@@ -1,7 +1,15 @@
-import { StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View, Text } from "react-native";
 
-export const Home = () => {
-  return;
+const HomeScreen = () => {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <Text>Home</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});
+
+export default HomeScreen;

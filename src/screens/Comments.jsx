@@ -1,7 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 export const Comments = () => {
-  return;
+  return (
+    <View>
+      <Text>Comments</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});
