@@ -3,7 +3,6 @@ import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import { RegistrationScreen } from "./src/screens/RegistrationScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
-import COLORS from "./src/constans/Colors";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,8 +16,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <RegistrationScreen /> */}
-      <LoginScreen />
+      <RegistrationScreen />
+      {/* <LoginScreen /> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -29,3 +28,43 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+// import React, { useState } from "react";
+// import {
+//   StyleSheet,
+//   View,
+//   TextInput,
+//   TouchableWithoutFeedback,
+//   Keyboard,
+//   KeyboardAvoidingView,
+//   Platform,
+// } from "react-native";
+
+// export default function App() {
+//   const [text, setText] = useState("");
+//   return (
+//     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+//       <View style={styles.container}>
+//         <KeyboardAvoidingView
+//           behavior={Platform.OS === "ios" ? "padding" : "height"}
+//         >
+//           <TextInput
+//             placeholder="Type text"
+//             value={text}
+//             onChangeText={setText}
+//           />
+//         </KeyboardAvoidingView>
+//       </View>
+//     </TouchableWithoutFeedback>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "flex-end",
+//     paddingBottom: 30,
+//   },
+// });
