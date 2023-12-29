@@ -1,15 +1,7 @@
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, Text } from "react-native";
+import BottomTabNavigation from "../navigations/BottomTabNavigation";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
+  return <BottomTabNavigation />;
 };
-
-const styles = StyleSheet.create({});
 
 export default HomeScreen;

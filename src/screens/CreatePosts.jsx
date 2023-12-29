@@ -1,11 +1,13 @@
 import { StyleSheet, View, Text } from "react-native";
 
-export const CreatePosts = () => {
+const CreatePosts = () => {
   return (
-    <View>
-      <Text>CreatePosts</Text>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Create Post</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({});
+
+export default CreatePosts;

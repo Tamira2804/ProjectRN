@@ -29,7 +29,6 @@ const RegistrationScreen = () => {
     Keyboard.dismiss();
     setInputs({ login: "", email: "", password: "" });
     navigation.navigate("Home");
-    console.log("Credentials", inputs);
   };
 
   const navigation = useNavigation();
