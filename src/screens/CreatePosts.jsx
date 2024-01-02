@@ -20,11 +20,14 @@ import getLocation from "../helpers/getLocation";
 import uuid from "react-native-uuid";
 import COLORS from "../constans/Colors";
 import Button from "../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 const CreatePosts = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef = useRef(null);
+
+  const [postsData, setPostsData] = useState([]);
   const [post, setPost] = useState({
     id: "",
     uri: null,
@@ -33,6 +36,8 @@ const CreatePosts = () => {
     location: {},
   });
   const { uri, titlePost, place } = post;
+
+  const navigation = useNavigation();
 
   const isFocused = useIsFocused();
   // const [uri, setUri] = useState(null);
@@ -81,11 +86,22 @@ const CreatePosts = () => {
     console.log("clearForm", post);
   };
 
-  const createPost = () => {
+  const createPost = (postsData) => {
     const newId = uuid.v4();
     handleLocation();
     setPost((prevState) => ({ ...prevState, id: newId }));
-    console.log("createPost", post);
+    const createdPostData = {
+      id: newId,
+      uri: uri,
+      titlePost: titlePost,
+      place: place,
+      location: location,
+    };
+    setPostsData([...postsData, createdPostData]);
+
+    navigation.navigate("Posts", {
+      postsData: [...postsData, createdPostData],
+    });
     clearForm();
   };
 
@@ -150,7 +166,7 @@ const CreatePosts = () => {
           </View>
           <Button
             title="Опубліковати"
-            onPress={createPost}
+            onPress={createPost(postsData)}
             isDisabled={isDisabled}
           />
         </KeyboardAvoidingView>

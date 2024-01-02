@@ -11,7 +11,7 @@ const Colors = {
   commentBg: "rgba(0, 0, 0, 0.03)",
 
   white: "#ffffff",
-  gray: "#BDBDBD",
+  grey: "#BDBDBD",
   orange: "#ff6c00",
   disable: "#F6F6F6",
 };
