@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   Platform,
-  Alert,
   StyleSheet,
   Text,
   View,
@@ -16,12 +16,19 @@ import {
 import COLORS from "../constans/Colors";
 import ImageBG from "../../assets/images/PhotoBG.png";
 
-export const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginScreen = () => {
+  const navigation = useNavigation();
+
+  const [inputs, setInputs] = useState({ email: "", password: "" });
+
+  const handleOnChange = (text, inputName) => {
+    setInputs((prevState) => ({ ...prevState, [inputName]: text }));
+  };
 
   const onLogin = () => {
-    console.log("Credentials", `${email}, ${password}`);
+    Keyboard.dismiss();
+    setInputs({ email: "", password: "" });
+    navigation.navigate("Home");
   };
 
   return (
@@ -38,13 +45,19 @@ export const LoginScreen = () => {
               <TextInput
                 style={styles.input}
                 placeholder="Адреса електронної пошти"
-                onChangeText={setEmail}
+                value={inputs.email}
+                onChangeText={(text) => {
+                  handleOnChange(text, "email");
+                }}
               />
               <View>
                 <TextInput
                   style={styles.input}
                   placeholder="Пароль"
-                  onChangeText={setPassword}
+                  value={inputs.password}
+                  onChangeText={(text) => {
+                    handleOnChange(text, "password");
+                  }}
                 />
 
                 <TouchableOpacity style={styles.showPassword}>
@@ -56,7 +69,16 @@ export const LoginScreen = () => {
             <TouchableOpacity style={styles.btn} onPress={onLogin}>
               <Text style={styles.titleBtn}>Увійти</Text>
             </TouchableOpacity>
-            <Text style={styles.link}>Немає акаунту? Зареєструватися</Text>
+            <View>
+              <Text style={styles.link}>Немає акаунту?</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("Registration");
+                }}
+              >
+                <Text style={styles.link}>Зареєструватися</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -148,3 +170,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
+
+export default LoginScreen;
